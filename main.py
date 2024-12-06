@@ -1,3 +1,5 @@
+import gestor_estudiante as ge
+
 def acerca_de():
     """
     Muestra información acerca del equipo que desarrolló el programa, incluyendo los integrantes,

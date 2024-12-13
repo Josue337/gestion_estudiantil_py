@@ -24,7 +24,7 @@ class GestorEstudiante:
         Inicializa una lista vacía para almacenar objetos de tipo Estudiante.
         """
         self.lista_estudiantes = []
-        
+
     def _validar_lista_vacia(self):
         """
         Valida si la lista de estudiantes está vacía.
@@ -36,7 +36,7 @@ class GestorEstudiante:
             print("No hay estudiantes registrados. Por favor, agregue estudiantes primero.")
             return False
         return True
-    
+
     def _validar_indice(self, indice):
         """
         Valida si el índice proporcionado está dentro del rango de la lista de estudiantes.
@@ -51,7 +51,7 @@ class GestorEstudiante:
             return True
         print("Índice fuera de rango. Por favor, intente nuevamente.")
         return False
-    
+
     def agregar_estudiante(self):
             """
             Permite agregar un nuevo estudiante al sistema solicitando su información básica.
@@ -77,7 +77,7 @@ class GestorEstudiante:
                 print("Error: Ingrese valores numéricos donde corresponda.")
             except Exception as ex:
                 print(f"Error inesperado: {ex}.")
-                
+
     def ingresar_calificaciones(self):
         """
         Permite ingresar calificaciones para un estudiante existente en la lista.
@@ -107,7 +107,7 @@ class GestorEstudiante:
             print("Error: Por favor, ingrese un número válido.")
         except Exception as ex:
             print(f"Error inesperado: {ex}.")
-                
+
     def consultar_estudiantes(self):
         """
         Muestra información detallada de un estudiante seleccionado de la lista.
@@ -136,6 +136,32 @@ class GestorEstudiante:
             Notas: {estudiante_seleccionado.notas}
             Promedio: {estu.Estudiante.calcular_promedio(estudiante_seleccionado)}
             """)
+        except ValueError:
+            print("Error: Por favor, ingrese un número válido.")
+        except Exception as ex:
+            print(f"Error inesperado: {ex}.")
+
+    def eliminar_estudiante(self):
+        """
+        Elimina un estudiante seleccionado de la lista.
+        """
+        print("---------------------")
+        print("ELIMINAR ESTUDIANTE")
+        print("---------------------\n")
+
+        if not self._validar_lista_vacia():
+            return
+
+        for i, estudiante in enumerate(self.lista_estudiantes, start=1):
+            print(f"{i}. {estudiante.get_nombre()}")
+
+        try:
+            indice = int(input("Seleccione el índice del estudiante a eliminar: "))
+            if not self._validar_indice(indice):
+                return
+
+            estudiante_eliminado = self.lista_estudiantes.pop(indice - 1)
+            print(f"Estudiante {estudiante_eliminado.get_nombre()} eliminado correctamente.")
         except ValueError:
             print("Error: Por favor, ingrese un número válido.")
         except Exception as ex:
